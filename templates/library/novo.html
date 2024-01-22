@@ -6,12 +6,22 @@
     <div class="col-12">
         <h1>Novo Livro</h1>
     </div>
-    <div class="col-12">
-        <form action="" method="post">
-            {% csrf_token %}
-            
-        </form>
-    </div>
 </div>
+<form action="" method="post">
+    <div class="row">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <label for="{{ field.id_for_label }}" class="col-12 mb-3">{{field.label}}{{ field }}</label>
+        {% endfor %}
+    </div>
+    <div class="row my-2 d-flex justify-content-end">
+        <div class="col-12 col-lg-2 mb-2 mb-lg-0">
+            <button type="button" class="btn btn-danger w-100" onclick="location.href = '/'">Cancelar</button>
+        </div>
+        <div class="col-12 col-lg-2">
+            <button type="submit" class="btn btn-secondary w-100">Adicionar</button>
+        </div>
+    </div>
+</form>
 
 {% endblock %}

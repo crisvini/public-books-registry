@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import BookForms
 
 
 def index(request):
@@ -6,4 +7,6 @@ def index(request):
 
 
 def novo(request):
-    return render(request, 'library/novo.html')
+    form = BookForms
+
+    return render(request, 'library/novo.html', {'form': form})
