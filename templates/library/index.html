@@ -5,34 +5,33 @@
 {% include "partials/_header_novo.html" %}
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Lançamento</th>
                 </tr>
             </thead>
             <tbody>
+                {% for book in books %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td><a class="fst-italic text-decoration-none" href="#">{{book.name}}</a></td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.category}}</td>
+                    <td>
+                        {% if book.description|length > 30 %}
+                        {{ book.description|slice:":30" }}...
+                        {% else %}
+                        {{ book.description }}
+                        {% endif %}
+                    </td>
+                    <td>{{book.release_date|date:"d/m/Y"}}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
