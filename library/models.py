@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 
@@ -43,7 +43,7 @@ class Book(models.Model):
     category = models.CharField(
         max_length=100, choices=CATEGORY, default='')
     description = models.TextField(null=False, blank=False)
-    release_date = models.DateTimeField(default=datetime.now, blank=False)
+    release_date = models.DateField(default=timezone.now, blank=False)
     user_id = models.ForeignKey(
         to=User,
         on_delete=models.SET_NULL,
@@ -53,4 +53,4 @@ class Book(models.Model):
     )
 
     def __str__(self):
-        return self.nome
+        return self.name

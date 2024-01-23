@@ -17,9 +17,11 @@
                 </tr>
             </thead>
             <tbody>
+                {% if books %}
                 {% for book in books %}
                 <tr>
-                    <td><a class="fst-italic text-decoration-none" href="#">{{book.name}}</a></td>
+                    <td><a class="fst-italic text-decoration-none" href="{% url 'editar' book.id %}">{{book.name}}</a>
+                    </td>
                     <td>{{book.author}}</td>
                     <td>{{book.category}}</td>
                     <td>
@@ -32,6 +34,9 @@
                     <td>{{book.release_date|date:"d/m/Y"}}</td>
                 </tr>
                 {% endfor %}
+                {% else %}
+                <td colspan="5">Nenhum livro encontrado</td>
+                {% endif %}
             </tbody>
         </table>
     </div>

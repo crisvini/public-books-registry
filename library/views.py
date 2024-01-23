@@ -24,3 +24,24 @@ def new(request):
             return redirect('index')
 
     return render(request, 'library/novo.html', {'form': form})
+
+
+def edit(request, book_id):
+    book = Book.objects.get(id=book_id)
+    form = BookForms(instance=book)
+
+    if request.method == 'POST':
+        form = BookForms(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Livro editado com sucesso!')
+            return redirect('index')
+
+    return render(request, 'library/editar.html', {'form': form, 'book_id': book_id})
+
+
+def delete(request, book_id):
+    book = Book.objects.get(id=book_id)
+    book.delete()
+    messages.success(request, 'Livro excluido com sucesso!')
+    return redirect('index')
