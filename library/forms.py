@@ -21,7 +21,7 @@ class BookForms(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'release_date': forms.DateInput(
-                format='%d-%m-%Y',
+                format='%Y-%m-%d',
                 attrs={
                     'type': 'date',
                     'class': 'form-control'
